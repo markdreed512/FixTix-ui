@@ -9,6 +9,8 @@ import {
     NavItem,
     NavLink
   } from 'reactstrap';
+import { Link } from 'react-router-dom'
+
 function NavBar() {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -19,13 +21,16 @@ function NavBar() {
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <NavLink className="nav-link">Dashboard</NavLink>
+                        <Link to="/" className="nav-link">Home</Link>
                     </NavItem>
                     <NavItem>
-                        <NavLink className="nav-link">My Tickets</NavLink>
+                        <Link to="/mytickets"  className="nav-link">My Tickets</Link>
                     </NavItem>
                     <NavItem>
-                        <NavLink className="nav-link">Login</NavLink>
+                        <Link to="/signup" className="nav-link">Sign Up</Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link to="/login" className="nav-link">Login</Link>
                     </NavItem>
                 </Nav>
             </Collapse>

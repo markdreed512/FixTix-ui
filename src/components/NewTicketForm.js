@@ -6,11 +6,11 @@ const handleSubmit = (e) => {
     e.preventDefault()
    console.log("submitting...")
 }
-const LoginForm = () => {
+const NewTicketForm = () => {
     return (
         <Card className="form-container">
             <Form onSubmit={handleSubmit} className="signup-form">
-                <h1 className="text-center">Login</h1>
+                <h1 className="text-center">New Ticket</h1>
                 <FormGroup>
                     <Label for="username">Username</Label>
                     <Input type="username" name="username" id="username" />
@@ -25,4 +25,4 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm
+export default NewTicketForm

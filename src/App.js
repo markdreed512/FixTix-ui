@@ -1,11 +1,12 @@
-// import './App.css';
-
+import './App.css';
 import React from 'react'
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 import SignUpForm from './components/SignUpForm'
-import MyTickets from './components/MyTickets'
+import Ticket from './components/Ticket'
 import LoginForm from './components/LoginForm'
+import MyTickets from './components/MyTickets'
+import NewTicketForm from './components/NewTicketForm'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 function App() {
   return (
@@ -26,7 +27,13 @@ function App() {
               <Route path="/login">
                 <LoginForm />
               </Route>
-            </Switch>
+              <Route path="/ticket/:id">
+                <Ticket />
+              </Route> 
+              <Route path="/newticket">
+                <NewTicketForm />
+              </Route> 
+        </Switch>
         </div>
       </div> 
     </Router>

@@ -7,7 +7,8 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink
+    NavLink, 
+    Button
   } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
@@ -31,6 +32,11 @@ function NavBar() {
                     </NavItem>
                     <NavItem>
                         <Link to="/login" className="nav-link">Login</Link>
+                    </NavItem>
+                    <NavItem>
+                        <Link to="/newticket" className="nav-link">
+                            <Button>New Ticket</Button>
+                        </Link>
                     </NavItem>
                 </Nav>
             </Collapse>

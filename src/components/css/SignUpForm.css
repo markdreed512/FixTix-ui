@@ -1,4 +1,4 @@
-#signup-form{
+.signup-form{
     width: 100%;
     max-width: 355px;
     margin: auto;
@@ -8,8 +8,7 @@
 #submit-btn{
     width: 100%;
 }
-#container{
-    width: 400px;
+.form-container{
+    max-width: 400px;
     margin: 50px auto;
-    /* padding: */
 }

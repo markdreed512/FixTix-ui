@@ -8,27 +8,27 @@ const handleSubmit = (e) => {
 }
 const SignUpForm = () => {
     return (
-        <Card id="container">
-        <Form onSubmit={handleSubmit} id="signup-form">
-            <h1 className="text-center">Create Account</h1>
-            <FormGroup>
-                <Label for="email" >Email</Label>
-                <Input type="email" name="email" id="email" autoFocus/>
-            </FormGroup>
-            <FormGroup>
-                <Label for="username">Username</Label>
-                <Input type="username" name="username" id="username" placeholder="" />
-            </FormGroup>
-            <FormGroup>
-                <Label for="password1">Password</Label>
-                <Input type="password" name="password1" id="password1" placeholder="" />
-            </FormGroup>
-            <FormGroup>
-            <Label for="password2">Password</Label>
-                <Input type="password" name="password2" id="passwor21" placeholder="" />
-            </FormGroup>
-            <Button className="btn-lg btn-block my-3" id="submit-btn">Submit</Button>
-        </Form>
+        <Card className="form-container">
+            <Form onSubmit={handleSubmit} className="signup-form">
+                <h1 className="text-center">Sign Up</h1>
+                <FormGroup>
+                    <Label for="email" >Email</Label>
+                    <Input type="email" name="email" id="email" autoFocus/>
+                </FormGroup>
+                <FormGroup>
+                    <Label for="username">Username</Label>
+                    <Input type="username" name="username" id="username" placeholder="" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="password1">Password</Label>
+                    <Input type="password" name="password1" id="password1" placeholder="" />
+                </FormGroup>
+                <FormGroup>
+                <Label for="password2">Password</Label>
+                    <Input type="password" name="password2" id="passwor21" placeholder="" />
+                </FormGroup>
+                <Button className="btn-lg btn-block my-3" id="submit-btn">Submit</Button>
+            </Form>
         </Card>
     )
 }

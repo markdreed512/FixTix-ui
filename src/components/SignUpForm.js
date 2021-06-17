@@ -24,7 +24,7 @@ const SignUpForm = () => {
                     <Input type="password" name="password1" id="password1" placeholder="" />
                 </FormGroup>
                 <FormGroup>
-                <Label for="password2">Password</Label>
+                <Label for="password2">Verify password</Label>
                     <Input type="password" name="password2" id="passwor21" placeholder="" />
                 </FormGroup>
                 <Button className="btn-lg btn-block my-3" id="submit-btn">Submit</Button>

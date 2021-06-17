@@ -7,6 +7,7 @@ import Ticket from './components/Ticket'
 import LoginForm from './components/LoginForm'
 import MyTickets from './components/MyTickets'
 import NewTicketForm from './components/NewTicketForm'
+import Tickets from './components/Tickets'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
               </Route> 
               <Route path="/newticket">
                 <NewTicketForm />
+              </Route> 
+              <Route path="/tickets">
+                <Tickets />
               </Route> 
         </Switch>
         </div>

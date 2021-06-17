@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import { Link } from 'react-router-dom'
 function Tickets() {
     const [ tickets, setTickets ] = useState([])
     useEffect(() => {
@@ -9,12 +9,17 @@ function Tickets() {
                 setTickets(data.tickets)
             })
     },[])
-    
+    const handleChange = () => {
+        console.log("handling change...")
+    }
     return (
         <ul>
-          {tickets.map(ticket=> {
+          {tickets.map((ticket, i)=> {
               return (
-                  <li>{ticket.title}</li>
+                  <div key={i}>
+                    <input type="checkbox" checked={ticket.completed} onChange={handleChange}/>
+                    <Link to={"/ticket/" + ticket.id}>{ticket.title}</Link>
+                  </div>
               )
           })}
         </ul>

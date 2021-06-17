@@ -35,16 +35,12 @@ function NavBar() {
                     <NavItem>
                         <Link to="/tickets" className="nav-link">Tickets</Link>
                     </NavItem>
-                    <NavItem>
                         <Link to="/newticket" className="nav-link">
                             <Button>New Ticket</Button>
                         </Link>
-                    </NavItem>
-                    <NavItem>
                         <Link to="/newproject" className="nav-link">
                             <Button>New Project</Button>
                         </Link>
-                    </NavItem>
                 </Nav>
             </Collapse>
       </Navbar>

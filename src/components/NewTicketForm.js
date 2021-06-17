@@ -19,9 +19,11 @@ const NewTicketForm = () => {
         const data = { 
             title: title, 
             body: description, 
-            completed: false,
+            status: "created",
+            high_priority: highPriority,
+            comments: "none",
             user_id: 1,
-            assigned_to: "Mark",
+            assigned_to: "unassigned",
             timestamp: null
         }
         console.log(data)

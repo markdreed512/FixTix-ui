@@ -21,11 +21,11 @@ function Ticket() {
                 <CardTitle  className="ticket-title">{ticket.title}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted">{`Created by user ${ticket.user_id}`}</CardSubtitle>
                 <hr/>
-                <CardText>{ticket.body}</CardText>
+                <CardText>{`description: ${ticket.body}`}</CardText>
                 <hr/>
                 <CardText>{`Assigned to: ${ticket.assigned_to}`}</CardText>
                 <hr/>
-                <CardText>Comments:</CardText>
+                <CardText>{`Comments:  ${ticket.comments}`}</CardText>
                 <ButtonGroup>
                     <Button className="ticket-btn">Edit Ticket</Button>
                     <Button className="ticket-btn">Mark as Complete</Button>

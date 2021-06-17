@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm'
 import MyTickets from './components/MyTickets'
 import NewTicketForm from './components/NewTicketForm'
 import Tickets from './components/Tickets'
+import NewProjectForm from './components/NewProjectForm'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
               </Route> 
               <Route path="/tickets">
                 <Tickets />
+              </Route> 
+              <Route path="/newproject">
+                <NewProjectForm />
               </Route> 
         </Switch>
         </div>

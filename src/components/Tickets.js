@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Card, CardBody, CardTitle, Button } from 'reactstrap'
 function Tickets() {
     const [ tickets, setTickets ] = useState([])
     useEffect(() => {
@@ -13,16 +14,20 @@ function Tickets() {
         console.log("handling change...")
     }
     return (
-        <ul>
+        <>
           {tickets.map((ticket, i)=> {
               return (
-                  <div key={i}>
-                    <input type="checkbox" checked={ticket.completed} onChange={handleChange}/>
-                    <Link to={"/ticket/" + ticket.id}>{ticket.title}</Link>
-                  </div>
+                <Card>
+                    <CardBody>
+                        <CardTitle tag="h5">{ticket.title}</CardTitle>
+                        <Link to={"/ticket/" + ticket.id}>
+                            <Button>View Details</Button>
+                        </Link>
+                    </CardBody>
+                </Card>
               )
           })}
-        </ul>
+        </>
     )
 }
 

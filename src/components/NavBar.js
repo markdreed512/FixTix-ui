@@ -40,6 +40,11 @@ function NavBar() {
                             <Button>New Ticket</Button>
                         </Link>
                     </NavItem>
+                    <NavItem>
+                        <Link to="/newproject" className="nav-link">
+                            <Button>New Project</Button>
+                        </Link>
+                    </NavItem>
                 </Nav>
             </Collapse>
       </Navbar>

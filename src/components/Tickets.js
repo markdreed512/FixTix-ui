@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Table, Input } from 'reactstrap'
+import { Table } from 'reactstrap'
 import './css/Tickets.css'
-function Tickets() {
+const Tickets = () => {
     const [ tickets, setTickets ] = useState([])
     useEffect(() => {
         fetch('/tickets')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setTickets(data.tickets)
             })
     },[])
-    const handleChange = () => {
-        console.log("handling change...")
-    }
+
     return (
         <Table className="tix-container" dark>
             <thead>
@@ -30,10 +27,9 @@ function Tickets() {
                 <tbody>
           {tickets.map((ticket, i)=> {
               return (
-                <tr>
+                <tr key={i}>
                     <td>{ticket.high_priority? <span className="priority">!</span> : ""}</td>
-                    {/* <td><Input type="checkbox" checked={ticket.high_priority} /></td> */}
-                    <td scope="row">{ticket.id}</td>
+                    <td>{ticket.id}</td>
                     <td>{ticket.title}</td>
                     <td>{ticket.status}</td>
                     <td>{ticket.assigned_to}</td>

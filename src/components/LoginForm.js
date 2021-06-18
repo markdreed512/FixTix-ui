@@ -17,15 +17,14 @@ const LoginForm = () => {
         const data = { 
             "username": username,
             "password": password }
-        console.log(data)
         const options = 
             {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                 'Content-Type': 'application/json',
-                body: data
-                }
-        }
+                },
+                body: JSON.stringify(data)
+            }
         fetch('/login', options)
             .then(res => console.log(res))
     }

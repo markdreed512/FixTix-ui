@@ -6,7 +6,6 @@ import './css/SignUpForm.css'
 
 const NewProjectForm = () => {
 
-    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [ title, setTitle ] = useState("")
     const [ description, setDescription ] = useState("")
     

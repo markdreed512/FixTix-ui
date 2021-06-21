@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import UserContext from './UserContext';
 import './css/NavBar.css'
 import {
     Collapse,
@@ -11,8 +12,9 @@ import {
   } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-function NavBar() {
+function NavBar(props) {
     const [isOpen, setIsOpen] = useState(false);
+    const [ user, setUser ] = useContext(UserContext)
     const toggle = () => setIsOpen(!isOpen);
     return (
         <Navbar id="navbar" className="p-3"  expand="md">
@@ -35,12 +37,13 @@ function NavBar() {
                     <NavItem>
                         <Link to="/tickets" className="nav-link">Tickets</Link>
                     </NavItem>
-                        <Link to="/newticket" className="nav-link">
-                            <Button>New Ticket</Button>
-                        </Link>
-                        <Link to="/newproject" className="nav-link">
-                            <Button>New Project</Button>
-                        </Link>
+                    <Link to="/newticket" className="nav-link">
+                        <Button>New Ticket</Button>
+                    </Link>
+                    <Link to="/newproject" className="nav-link">
+                        <Button>New Project</Button>
+                    </Link>
+                    <NavItem>{props.user.username}</NavItem>
                 </Nav>
             </Collapse>
       </Navbar>

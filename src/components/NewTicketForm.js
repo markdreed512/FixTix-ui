@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Card, Form, Button, FormGroup, Label, Input, Dropdown, DropdownMenu, DropdownItem, DropdownToggle} from "reactstrap"
 import './css/SignUpForm.css'
-
+import UserContext from './UserContext'
 
 
 const NewTicketForm = () => {
@@ -9,24 +9,36 @@ const NewTicketForm = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [ title, setTitle ] = useState("")
     const [ description, setDescription ] = useState("")
+    const [ assignedTo ,setAssignedTo] = useState("unassigned")
     // const [ assignedTo, setAssignedTo ] = useState("")
     const [ highPriority, setHighPriority ] = useState(false)
-    
+    const [ users, setUsers ] = useState([])
+    const [ user, setUser ] = useContext(UserContext)
+    useEffect(() => {
+        fetch('/users')
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                setUsers(data.users)
+            })
+    }, [])
+
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
     const sendTicketToDb = (e) => {
         e.preventDefault()
+        console.log("user: ..." + user.id)
         const data = { 
             title: title, 
             body: description, 
             status: "created",
             high_priority: highPriority,
             comments: "none",
-            user_id: 1,
-            assigned_to: "unassigned",
+            user_id: 1, //when user logs in, set user_id at app.js, pass as prop to comp's
+            assigned_to: assignedTo,
             timestamp: null
         }
-        console.log(data)
         const options = {
             method: 'POST',
             headers: {
@@ -37,7 +49,6 @@ const NewTicketForm = () => {
         fetch('/add_ticket', options)
             .then(response => response.json)
             .then(json => {
-                console.log(json)
                 setTitle("")
                 setDescription("")
                 setHighPriority(false)
@@ -72,7 +83,12 @@ const NewTicketForm = () => {
                         </DropdownToggle>
                         <DropdownMenu>
                             {/* these items should populate from users in db */}
-                            <DropdownItem header>Mark</DropdownItem>
+                            {users.map((user,i) => {
+                                return (
+                                    <DropdownItem key={i} onClick={()=> setAssignedTo(user.username)}>{user.username}</DropdownItem>
+                                )
+                            })}
+                            
                             
                         </DropdownMenu>
                     </Dropdown>

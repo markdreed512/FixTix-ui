@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Card, Form, Button, FormGroup, Label, Input} from "reactstrap"
 import './css/SignUpForm.css'
-
+import UserContext from './UserContext'
 
 const LoginForm = () => {
     const [ username, setUsername ] = useState("")
     const [ password, setPassword ] = useState("")
+    const [ user, setUser ] = useContext(UserContext)
     let handleUsernameChange = (e) => {
         setUsername(e.target.value)
     }
@@ -26,7 +27,14 @@ const LoginForm = () => {
                 body: JSON.stringify(data)
             }
         fetch('/login', options)
-            .then(res => console.log(res))
+            .then(res => {
+               if(res.status === 200){
+                   console.log(username + " logged in")
+                //    need to set user to actual User with all pertinent data from db here
+                   setUser({username})
+               }
+               
+            })
     }
     return (
         <Card className="form-container">

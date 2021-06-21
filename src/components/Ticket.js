@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button, ButtonGroup,Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { useParams, useHistory } from "react-router-dom";
 import './css/Ticket.css'
+import { history } from 'react-router-dom'
+
 function Ticket() {
     let { id } = useParams();
     const history = useHistory()
@@ -32,7 +34,10 @@ function Ticket() {
         fetch(`/close_ticket/${id}`, {method: "PUT"})
             .then(res => console.log(res))
     }
-   
+   const editTicket = () => {
+       console.log("open EditTicket component")
+       history.push('/edit-ticket-form')
+   }
     return (
         // Created by should get username by ticket.user_id
         <>
@@ -47,7 +52,7 @@ function Ticket() {
                 <hr/>
                 <CardText>{`Comments:  ${ticket.comments}`}</CardText>
                 <ButtonGroup>
-                    <Button className="ticket-btn">Edit Ticket</Button>
+                    <Button className="ticket-btn" onClick={editTicket}>Edit Ticket</Button>
                     <Button className="ticket-btn" onClick={closeTicket}>Close Ticket</Button>
                     <Button className="ticket-btn">Add Comment</Button>
                     <Button className="ticket-btn" onClick={toggle}>Delete Ticket</Button>

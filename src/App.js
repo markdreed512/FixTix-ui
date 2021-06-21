@@ -9,13 +9,17 @@ import MyTickets from './components/MyTickets'
 import NewTicketForm from './components/NewTicketForm'
 import Tickets from './components/Tickets'
 import NewProjectForm from './components/NewProjectForm'
+import EditTicketForm from './components/EditTicketForm';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import UserContext from './components/UserContext';
+import TicketContext from './components/TickeContext'
 
 function App() {
-  const [ user, setUser ] = useState({username: "testUser"})
+  const [ user, setUser ] = useState({})
+  const [ ticket, setTicket ] = useState({test: "tetst"})
   return (
     <UserContext.Provider value={[ user, setUser ]}>
+    <TicketContext.Provider value={[ ticket, setTicket ]}>
       <Router>
         <div >
           <NavBar className="main-nav" user={user}/>
@@ -45,10 +49,14 @@ function App() {
                 <Route path="/newproject">
                   <NewProjectForm />
                 </Route> 
+                <Route path="/edit-ticket-form">
+                  <EditTicketForm />
+                </Route> 
           </Switch>
           </div>
         </div> 
       </Router>
+    </TicketContext.Provider>
     </UserContext.Provider>
   );
 }

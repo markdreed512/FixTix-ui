@@ -26,7 +26,7 @@ const Tickets = () => {
                 </thead>
                 <tbody>
           {tickets.map((ticket, i)=> {
-              return (
+              return ticket.status !== "closed"? (
                 <tr key={i}>
                     <td>{ticket.high_priority? <span className="priority">!</span> : ""}</td>
                     <td>{ticket.id}</td>
@@ -35,7 +35,7 @@ const Tickets = () => {
                     <td>{ticket.assigned_to}</td>
                     <td><Link to={"/ticket/" + ticket.id}>view ticket</Link></td>
                 </tr>
-              )
+              ) : null
           })}
           </tbody>
         </Table>

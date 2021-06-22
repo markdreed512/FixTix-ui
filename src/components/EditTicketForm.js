@@ -10,12 +10,41 @@ function EditTicketForm() {
     const [ assignedTo ,setAssignedTo] = useState("unassigned")
     const [ highPriority, setHighPriority ] = useState(false)
     const [ users, setUsers ] = useState([])
+    const [ title, setTitle ] = useState("")
+    const [ description, setDescription ] = useState("")
+    const [ comments, setComments ] = useState("")
+    useEffect(() => {
+        setTitle(ticket.title)
+        setDescription(ticket.description)
+        setComments(ticket.comments)
+        setHighPriority(ticket.high_priority)
+        setAssignedTo(ticket.assigned_to)
+    },[])
     const handleSubmit = (e) => {
-        
+        const data = {
+            title: title,
+            body: description,
+            assigned_to: assignedTo,
+            comments: comments,
+            high_priority: highPriority
+        }
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+        fetch('/edit_ticket/' + ticket.id, options)
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+            })
     }
-    const handleTitleChange = (e) => {}
-    const handleDescriptionChange = (e) => {}
-    const handlePriorityChange = (e) => {}
+    const handleTitleChange = (e) => setTitle(e.target.value)
+    const handleDescriptionChange = (e) => setDescription(e.target.value)
+    const handlePriorityChange = () => setHighPriority(!highPriority)
+    const handleCommentsChange = (e) => setComments(e.target.value)
     const toggle = () => setDropdownOpen(prevState => !prevState);
 
     useEffect(() => {
@@ -35,11 +64,11 @@ function EditTicketForm() {
                     <h1 className="text-center">Edit Ticket</h1>
                     <FormGroup>
                         <Label for="title">Title</Label>
-                        <Input type="text" name="title" id="title"  onChange={handleTitleChange} value={ticket.title}/>
+                        <Input type="text" name="title" id="title"  onChange={handleTitleChange} value={title}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="description">Description</Label>
-                        <Input type="text" name="description" id="description"  onChange={handleDescriptionChange} value={ticket.body}/>
+                        <Input type="text" name="description" id="description"  onChange={handleDescriptionChange} value={description}/>
                     </FormGroup>
                     <FormGroup>
                         <Label for="assigned-to">Assign to</Label>
@@ -58,7 +87,11 @@ function EditTicketForm() {
                     </FormGroup>
                     <FormGroup>
                         <Label for="priority">High Priority</Label>
-                        <Input type="checkbox" name="priority" id="priority" onChange={handlePriorityChange} value={ticket.highPriority}/>
+                        <Input type="checkbox" name="priority" id="priority" onChange={handlePriorityChange} checked={highPriority}/>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="comments">Comments</Label>
+                        <Input type="textarea" name="comments" id="comments" onChange={handleCommentsChange} value={comments}/>
                     </FormGroup>
                     <Button className="btn-lg btn-block my-3" id="submit-btn">Save Edits</Button>
                 </Form>

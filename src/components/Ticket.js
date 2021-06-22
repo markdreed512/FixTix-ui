@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button, ButtonGroup,Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { useParams, useHistory } from "react-router-dom";
 import './css/Ticket.css'
 import { history } from 'react-router-dom'
+import TicketContext  from './TickeContext';
 
 function Ticket() {
     let { id } = useParams();
     const history = useHistory()
-    const [ ticket, setTicket ] = useState({})
+    const [ ticket, setTicket ] = useContext(TicketContext)
     const [ modal, setModal ] = useState(false);
     const [ username, setUsername ] = useState("none")
     const toggle = () => setModal(!modal);
@@ -15,6 +16,7 @@ function Ticket() {
         fetch(`/ticket/${id}`)
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 setTicket(data)
             })
     },[id])
@@ -45,8 +47,9 @@ function Ticket() {
             <CardBody>
                 <CardTitle  className="ticket-title">{ticket.title}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted">Created by:<span className="username"> {username}</span></CardSubtitle>
+                {ticket.status === "created"? <Button className="open-ticket-btn" color="success">Open Ticket</Button> : null}
                 <hr/>
-                <CardText>{`Description: ${ticket.body}`}</CardText>
+                <CardText>{`Description: ${ticket.description}`}</CardText>
                 <hr/>
                 <CardText>{`Assigned to: ${ticket.assigned_to}`}</CardText>
                 <hr/>

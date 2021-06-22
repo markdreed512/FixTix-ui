@@ -16,7 +16,7 @@ import TicketContext from './components/TickeContext'
 
 function App() {
   const [ user, setUser ] = useState({})
-  const [ ticket, setTicket ] = useState({test: "tetst"})
+  const [ ticket, setTicket ] = useState({title: "tetst"})
   return (
     <UserContext.Provider value={[ user, setUser ]}>
     <TicketContext.Provider value={[ ticket, setTicket ]}>

@@ -31,14 +31,14 @@ const NewTicketForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("user: ..." + user.id)
+        console.log("user id: ..." + user.id)
         const data = { 
             title: title, 
             body: description, 
             status: "created",
             high_priority: highPriority,
             comments: "none",
-            user_id: 1, //when user logs in, set user_id at app.js, pass as prop to comp's
+            user_id: user.id, //when user logs in, set user_id at app.js, pass as prop to comp's
             assigned_to: assignedTo,
             timestamp: null
         }
@@ -73,7 +73,7 @@ const NewTicketForm = () => {
     }
     return (
         <>
-        { modalIsOpen? <TicketSubmittedModal key={title} title={title} heading="Success!!" /> : null }
+        { modalIsOpen? <TicketSubmittedModal heading="Success!!" /> : null }
             <Card className="form-container">
                 <Form onSubmit={handleSubmit} className="signup-form">
                     <h1 className="text-center">New Ticket</h1>

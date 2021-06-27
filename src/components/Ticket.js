@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Card, CardBody, CardTitle, CardSubtitle, CardText, Button, ButtonGroup,Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import {Card, CardBody, CardTitle, CardSubtitle, CardText, Button, ButtonGroup,Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import { useParams, useHistory } from "react-router-dom";
 import './css/Ticket.css'
-import { history } from 'react-router-dom'
 import TicketContext  from './TickeContext';
+import TicketClosedModal from './TicketClosedModal'
 
 function Ticket() {
     let { id } = useParams();
     const history = useHistory()
+    // const [ alertOpen, setAlertOpen ] = useState(false)
     const [ ticket, setTicket ] = useContext(TicketContext)
     const [ modal, setModal ] = useState(false);
+    const [ ticketClosedModalOpen, setTicketClosedModalOpen ] = useState(false)
     const [ username, setUsername ] = useState("none")
     const toggle = () => setModal(!modal);
     useEffect(() => {
@@ -34,15 +36,18 @@ function Ticket() {
     const closeTicket = () => {
         // send request (PUT?) to '/close_ticket/<id>'
         fetch(`/close_ticket/${id}`, {method: "PUT"})
-            .then(res => console.log(res))
+            .then(res => {
+                // clear form
+                setTicketClosedModalOpen(true)
+            })
     }
    const editTicket = () => {
        console.log("open EditTicket component")
        history.push('/edit-ticket-form')
    }
+   
     return (
-        // Created by should get username by ticket.user_id
-        <>
+        <> 
         <Card className="my-card">
             <CardBody>
                 <CardTitle  className="ticket-title">{ticket.title}</CardTitle>
@@ -72,6 +77,8 @@ function Ticket() {
           <Button color="secondary" onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
+     {ticketClosedModalOpen? <TicketClosedModal/> : null}
+     
       </>
     )
 }

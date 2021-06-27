@@ -22,7 +22,7 @@ const LoginForm = () => {
             {
                 method: 'POST',
                 headers: {
-                'Content-Type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data)
             }
@@ -30,10 +30,11 @@ const LoginForm = () => {
             .then(res => {
                if(res.status === 200){
                    console.log(username + " logged in")
-                //    need to set user to actual User with all pertinent data from db here
-                   setUser({username})
                }
-               
+               return res.json()
+            })
+            .then(data => {
+                setUser({username: data.username, id: data.id})
             })
     }
     return (

@@ -14,7 +14,7 @@ const NewProjectForm = () => {
         e.preventDefault()
         const data = { 
             title: title, 
-            body: description, 
+            description: description, 
             timestamp: null
         }
         const options = {

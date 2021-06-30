@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm'
 import MyTickets from './components/MyTickets'
 import NewTicketForm from './components/NewTicketForm'
 import Tickets from './components/Tickets'
+import Projects from './components/Projects'
 import NewProjectForm from './components/NewProjectForm'
 import EditTicketForm from './components/EditTicketForm';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
@@ -51,6 +52,9 @@ function App() {
                 </Route> 
                 <Route path="/edit-ticket-form">
                   <EditTicketForm />
+                </Route> 
+                <Route path="/projects">
+                  <Projects />
                 </Route> 
           </Switch>
           </div>

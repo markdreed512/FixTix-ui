@@ -7,7 +7,7 @@ import './css/TicketSubmittedModal.css'
 const TicketClosedModal = () => {
   const history = useHistory()
   const [ modalOpen, setModalOpen ] = useState(true);
-  const [ ticket, setTicket ] = useContext(TicketContext)
+  const [ ticket ] = useContext(TicketContext)
   const toggle = () => setModalOpen(!modalOpen);
 
   const goToTickets = () => {

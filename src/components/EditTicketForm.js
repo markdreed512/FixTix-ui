@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import TicketContext from './TickeContext'
 import { Card, Form, Button, FormGroup, Label, Input, Dropdown, DropdownMenu, DropdownItem, DropdownToggle} from "reactstrap"
 import TicketSubmittedModal from './TicketSubmittedModal'
+import { useHistory } from 'react-router';
 
 function EditTicketForm() {
-    const [ ticket, setTicket ] = useContext(TicketContext)
-    const [ modalIsOpen, setModalIsOpen ] = useState(false)
+    const [ ticket ] = useContext(TicketContext)
+    const [ modalIsOpen ] = useState(false)
     const [ dropdownOpen, setDropdownOpen ] = useState(false);
     const [ assignedTo ,setAssignedTo] = useState("unassigned")
     const [ highPriority, setHighPriority ] = useState(false)
@@ -13,14 +14,16 @@ function EditTicketForm() {
     const [ title, setTitle ] = useState("")
     const [ description, setDescription ] = useState("")
     const [ comments, setComments ] = useState("")
+    const history = useHistory()
     useEffect(() => {
         setTitle(ticket.title)
         setDescription(ticket.description)
         setComments(ticket.comments)
         setHighPriority(ticket.high_priority)
         setAssignedTo(ticket.assigned_to)
-    },[])
+    },[ticket])
     const handleSubmit = (e) => {
+        e.preventDefault()
         const data = {
             title: title,
             body: description,
@@ -36,9 +39,9 @@ function EditTicketForm() {
             body: JSON.stringify(data)
         }
         fetch('/edit_ticket/' + ticket.id, options)
-            .then(res => res.json())
-            .then(json => {
-                console.log(json)
+            .then(res => {
+                console.log(res)
+                history.push('/ticket/' + ticket.id)
             })
     }
     const handleTitleChange = (e) => setTitle(e.target.value)

@@ -26,7 +26,7 @@ function NavBar(props) {
                         <Link to="/" className="nav-link">Home</Link>
                     </NavItem>
                     <NavItem>
-                        <Link to="/mytickets"  className="nav-link">My Tickets</Link>
+                        <Link to={`/tickets/${user.id}`}  className="nav-link">My Tickets</Link>
                     </NavItem>
                     <NavItem>
                         <Link to="/signup" className="nav-link">Sign Up</Link>

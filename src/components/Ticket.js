@@ -18,10 +18,9 @@ function Ticket() {
         fetch(`/ticket/${id}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setTicket(data)
             })
-    },[id])
+    },[ticket, setTicket,id])
     useEffect(() => {
         fetch(`/user/${ticket.user_id}`)
             .then(res => res.json())
